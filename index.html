@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Para o meu amor</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+    :root{
+      --accent:#ff4d6d;
+      --text:#eaeaea;
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%; margin:0; font-family:Inter, sans-serif; color:var(--text);}
+
+    body{
+      background:#0a0a0a;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+   
+    @keyframes moveStars{
+      from{background-position:0 0;} to{background-position:-10000px 10000px;}
+    }
+
+    /* Corações flutuando */
+    .hearts{
+      position:fixed; top:0; left:0;
+      width:100%; height:100%; z-index:-1;
+      pointer-events:none;
+    }
+    .heart{
+      position:absolute;
+      width:20px; height:20px;
+      background:var(--accent);
+      transform:rotate(45deg);
+      animation:floatUp 6s linear infinite;
+      opacity:0.6;
+    }
+    .heart:before,
+    .heart:after{
+      content:"";
+      position:absolute;
+      width:20px; height:20px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    .heart:before{top:-10px; left:0;}
+    .heart:after{left:-10px; top:0;}
+
+    @keyframes floatUp{
+      0%{transform:translateY(0) rotate(45deg); opacity:0.8;}
+      100%{transform:translateY(-800px) rotate(45deg); opacity:0;}
+    }
+
+    /* Caixa de senha */
+    .password-box{
+      background:rgba(25,25,25,0.85);
+      padding:30px;
+      border-radius:14px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+    input{
+      padding:10px 14px;
+      border-radius:8px;
+      border:none;
+      outline:none;
+      background:#333;
+      color:var(--text);
+      width:80%;
+      font-size:15px;
+    }
+    button{
+      margin-top:14px;
+      padding:10px 18px;
+      border:none;
+      border-radius:8px;
+      background:var(--accent);
+      color:white;
+      cursor:pointer;
+      font-size:15px;
+      transition:0.2s;
+    }
+    button:hover{opacity:0.8;}
+
+    /* Card de conteúdo */
+    .card{
+      background:rgba(15,15,15,0.9);
+      padding:36px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 10px 30px rgba(0,0,0,0.7);
+      max-width:900px;
+      display:none;
+      opacity:0;
+      transform:translateY(20px);
+      transition:opacity 1s ease, transform 1s ease;
+    }
+    .card.show{
+      display:block;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .content p{line-height:1.6; margin:12px 0;}
+      /* Ajustes de responsividade para celular */
+    /* Animação do título */
+    .title-anim{
+      animation:titleGlow 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes titleGlow{
+      0%{text-shadow:0 0 4px var(--accent), 0 0 8px var(--accent);} 
+      100%{text-shadow:0 0 12px var(--accent), 0 0 24px var(--accent);} 
+    }
+
+    @media (max-width: 600px){
+      body{
+        padding:16px;
+        overflow:hidden;
+      }
+      .password-box{
+        width:90%;
+        padding:22px;
+      }
+
+      input{
+        width:95%;
+        font-size:16px;
+      }
+
+      button{
+        width:95%;
+        font-size:16px;
+        padding:12px;
+      }
+
+      .card{
+        width:95%;
+        padding:22px;
+        border-radius:14px;
+      }
+
+      .content p{
+        font-size:15px;
+        line-height:1.55;
+      }
+
+      h2{
+        font-size:20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgm" loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Komiku/It's_time_for_adventure/Komiku_-_12_-_Buddy.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="stars"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <div id="passBox" class="password-box">
+    <h2>Digite a senha para continuar</h2>
+    <input type="password" id="password" placeholder="Senha">
+    <br>
+    <button onclick="checkPass()">Entrar</button>
+    <p id="error" style="color:#ff6b6b; display:none;">Senha incorreta besta.</p>
+  </div>
+
+  <div id="contentCard" class="card">
+    <h1 class="title-anim" style="text-align:center; color:var(--accent);">Para o Meu amor</h1>
+
+    <div class="content">
+      <p>Minha querida Maria, se você está lendo esta mensagem, significa que, infelizmente, não consegui finalizar seu desenho. Por isso, decidi que o melhor presente seria algo diferente e muito mais pessoal: uma expressão sincera do que eu realmente sinto por você. Se um dia você se sentir triste, prometo que este site será um lembrete constante do quanto você é amada. Visite sempre que precisar de um carinho ou palavras de conforto.</p>
+
+        <p>Não é simples colocar em palavras tudo o que sinto, mas preciso que saiba algo fundamental: Maria, minha heroína, a minha confiança em você são absoluta.
+        Por isso, peço que jamais minta para mim, nem tente carregar o peso do mundo ou a culpa por tudo sozinha. Foi você quem, com tanta doçura, conseguiu derreter o gelo no meu coração, me fazendo sentir, carinhosamente, o tempo passar e a vida pulsar de novo.
+        Saiba que o meu lugar é sempre ao seu lado. Eu ouvirei cada palavra que você tiver para dizer, pois é isso que eu quero. E preste atenção: cada vez que eu disser 'Eu amo você', eu quero que seja você, e não gostaria que fosse mais ninguém além de você. Você fez o tempo voltar a passar para mim, e meu único desejo é que você esteja presente em cada instante que ele correr.</p>
+      
+        <p>Eu amo quando você toca meu cabelo; é como se pudéssemos nos entender profundamente apenas pelo contato da sua mão.
+        Eu amo a sua voz. So de ouvir você dizer alguma coisa eu já sinto o calor no meu coração.
+        Eu amo seus olhos também. Quando você está falando comigo. Eu amo como eles amolecem.
+        Eu amo os seus dedos. Você tem dedos lindos, mais quando eu todo eles, eu sei que eles são dedos fortes de uma mulher incrível que você é.
+       Eu amo o seu jeito de andar. Quando nos andamos juntos, eu amo o jeito que você me acompanha.
+       Eu amo a sua aparência quando você dorme. Você parece uma criança de tão fofa. E os seus cílios são tão longos, quando eu toco a suas bochechas você se acalma.</p>
+      
+    </div>
+  </div>
+ 
+<script>
+
+    
+  function checkPass(){
+    const pass = document.getElementById('password').value;
+    if(pass === "euteamo"){
+      document.getElementById('passBox').style.display = 'none';
+      const card = document.getElementById('contentCard');
+      card.style.display = 'block';
+      setTimeout(()=> card.classList.add('show'), 50);
+      document.getElementById('bgm').play();
+    }else{
+      document.getElementById('error').style.display = 'block';
+    }
+  }
+
+  // Criar corações flutuantes
+  function createHearts(){
+    const container = document.getElementById('hearts');
+    for(let i=0;i<20;i++){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.style.left = Math.random()*100 + '%';
+      h.style.bottom = '-50px';
+      h.style.animationDuration = (4 + Math.random()*4) + 's';
+      container.appendChild(h);
+    }
+  }
+  createHearts();
+</script>
+
+</body>
+</html>
